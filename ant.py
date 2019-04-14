@@ -1,4 +1,6 @@
-import random
+import random,matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
 
 direction = [[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[1,-1],[0,-1]]
 start = ["010010"]
@@ -10,17 +12,30 @@ y_border = [0,100]
 def main():
     playgr = field.start()
     ants = ant.create()
-    print(ants)
-    for i in range(0,n):
-        smell_list = ant.smell(ants[i]["pos"],playgr)
-        direction = ant.move(smell_list,ants[i]["status"])
-        position = ant.position(ants,direction)
-    print(ants)
+    pos_list =[]
+    for j in range(0,100000): 
+        for i in range(0,n):
+            smell_list = ant.smell(ants[i]["pos"],playgr)
+            direction = ant.move(smell_list,ants[i]["status"])
+            ant.pheromons(ants[i]["pos"],playgr,ants[i]["status"])
+            antchange = ant.modechange(ants[i]["pos"],ants[i])
+            ants.update(antchange)
+            position = ant.position(ants,direction)
+            pos_new = ants[i]["pos"]
+            pos_list.append(pos_new)
+    field.paint(pos_list)
+    plt.show()
+
   
 class common():
     def poskey(x,y):
         positionkey = (3-len(str(x)))*"0"+str(x*1000+y)
         return positionkey
+
+    def xy_pos(pos):
+        pos_x = int(pos[:3])
+        pos_y = int(pos[4:6])
+        return [pos_x,pos_y]
         
 class ant():
     def create(ants={},n=1):
@@ -70,21 +85,25 @@ class ant():
             ant_value.update({"pos":pos_new})
             ants.update({i:ant_value})
 
-    def pheromons(pos,field={"":{"":""}},mode=""):
-        new_value=field[pos][mode]+1
+    def pheromons(pos,field,mode):
+        new_value=field[str(pos)][mode]+1
         cell=field[pos]
         cell.update({mode:new_value})
         field.update({pos:cell})
         return field
 
-    def mode(pos):
+    def modechange(pos,a):
+        stat = a["status"]
         if pos == target:
-            mode = "return"
+            stat = "return"
+            
         elif pos == start:
-            mode = "search"
+            stat = "search"
         else:
             pass
-        return mode
+        a.update({"status":stat})
+        return a
+        
 
 class field():
     def start():
@@ -103,4 +122,14 @@ class field():
                               }
                              )
         return field
+
+    def paint(pos):
+        x_list = []
+        y_list = []
+        for i in pos:
+            pos_value = common.xy_pos(i)
+            x_list.append(pos_value[0])
+            y_list.append(pos_value[1])
+        fig, ax = plt.subplots()
+        ax.plot(x_list, y_list,'o')
 main()
