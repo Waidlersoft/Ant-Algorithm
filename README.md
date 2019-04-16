@@ -14,21 +14,21 @@ Structure
 ========
 
 Ants:
--Creation
--Moving
--Smelling
--Pheromons
+- Creation
+- Moving
+- Smelling
+- Pheromons
 
 Field:
--Start
--Target
--Borders/Obstacles
--Pheromons
--Wind
+- Start
+- Target
+- Borders/Obstacles
+- Collecting pheromons
+- Wind
 
 Visualization:
--Drawing of field
--Dynamic displaying of ants
+- Drawing of field
+- Dynamic displaying of ants
 
 Common Functions:
 - Some basic functions
