@@ -5,22 +5,25 @@ import numpy as np
 direction = [[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[1,-1],[0,-1]]
 start = ["010010"]
 target = ["090090"]
-n = 1 #number of ants
+n = 2 #number of ants
 x_border = [0,100]
 y_border = [0,100]
 statuslist = ["search","return"]
+POIx=[]
+POIy=[]
 
 def main():
     ax = plt.axes()
     plt.xlim(0,100) 
     plt.ylim(0,100)
+    field.prepare(ax)
     playgr = field.start()
-    ants = ant.create()
+    ants = ant.create(n)
     pos_list =[]
-    for j in range(0,100000): 
+    for j in range(0,10000000): 
         for i in range(0,n):
             smell_list = ant.smell(ants[i]["pos"],playgr)
-            direction = ant.move(smell_list,ants[i]["status"])
+            direction = ant.move(smell_list,ants[i]["status"],j)
             ant.pheromons(ants[i]["pos"],playgr,common.switchstatus(ants[i]["status"]))
             antchange = ant.modechange(ants[i]["pos"],ants[i])
             ants.update(antchange)
@@ -45,21 +48,21 @@ class common():
         return i
         
 class ant():
-    def create(ants={},n=1):
+    def create(n=1):
         ants = {}
+        
         for i in range(0,n):
             ants.update({i:{"pos":"010010",
-                            "status":"search"}
-                         }
-                        )
+                            "status":"search"}})
+        print(str(n) +";"+str(ants))
         return ants
 
-    def move(value_list=[1,1,1,1,1,1,1,1],status="search"):
+    def move(value_list=[1,1,1,1,1,1,1,1],status="search",roundnr=0):
             rnd = random.random()
             j = 0
             grade = 0
             val_sum = 0
-            text =str(status)+"-- search:"
+            text =str(roundnr)+":"+str(status)+"-- search:"
             for i in value_list:
                 text=text+str(i["search"])+","
             text = text + "-- return:"
@@ -119,8 +122,7 @@ class ant():
         
 
 class field():
-    def start():
-        
+    def start():       
         field = {}
         for x in range(0,101):
             for y in range(0,101):
@@ -130,12 +132,16 @@ class field():
                 else:
                     n = 1
                 field.update({keystring:{"search":n,
-                                         "return":n
-                                         }
-                              }
-                             )
+                                         "return":n}})
         return field
 
+    def prepare(ax):
+        POIx.append(common.xy_pos(start[0])[0])
+        POIy.append(common.xy_pos(start[0])[1])
+        POIx.append(common.xy_pos(target[0])[0])
+        POIy.append(common.xy_pos(target[0])[1])
+        ax.scatter([POIx], [POIy])
+   
     def paint(pos,ax):       
             x= common.xy_pos(pos)[0]
             y= common.xy_pos(pos)[1]
