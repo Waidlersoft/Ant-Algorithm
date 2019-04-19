@@ -4,6 +4,7 @@ Self learning ant algorithm.
 ===Currently in development===
 
 Written in Python 3.7
+Needs matplotlib
 
 Theoretic model:
 ==============
