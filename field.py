@@ -45,8 +45,8 @@ class field():
         ax.lines[0].remove()
         
     def wind(field):
-        for x in range(x_border[0],x_border[1]+1):
-            for y in range(y_border[0],y_border[1]+1):
+        for x in range(common.x_border[0],common.x_border[1]+1):
+            for y in range(common.y_border[0],common.y_border[1]+1):
                 keystring = common.poskey(x,y)
                 pheromones = field[keystring]
                 searchPheromones=100

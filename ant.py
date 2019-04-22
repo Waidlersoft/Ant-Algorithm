@@ -9,7 +9,7 @@ class ant():
                 return ants
         def create(n=1):
                 ants = {}
-                for i in range(0,n):
+                for i in range(0,common.n):
                     ants=ant.birth(ants,i)
                 return ants
 
@@ -82,4 +82,4 @@ class ant():
                 for i in value_list:
                     text=text+str(i["return"])+","
                 text = text+" Pos:"+str(position)
-                print(text)
+                return text
