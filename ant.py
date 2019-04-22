@@ -2,15 +2,18 @@ from common import common
 import random
 
 class ant():
-        def create(n=1,start="001001"):
+        def birth(ants,i):
+                ants.update({i:{"pos":common.startpoint,
+                                "status":"search",
+                                "pheromones":200}})
+                return ants
+        def create(n=1):
                 ants = {}
                 for i in range(0,n):
-                    ants.update({i:{"pos":start,
-                                    "status":"search",
-                                    "pheromones":200}})
+                    ants=ant.birth(ants,i)
                 return ants
 
-        def move(value_list,status,direction):
+        def move(value_list,status):
                     rnd = random.random()
                     j = 0
                     grade = 0
@@ -25,50 +28,51 @@ class ant():
                             grade = grade + i[status]/val_sum
                             if rnd <= grade:
                                 break
-                    return direction[j - 1]
+                    return common.direction[j - 1]
 
-        def smell(pos,field,direction):
+        def smell(pos,field):
                 smell_list =[]
                 x=int(pos[:3])
                 y=int(pos[4:6])
-                for i in direction:
+                for i in common.direction:
                     pos_x=x+i[0]
                     pos_y=y+i[1]
                     pos_key=common.poskey(pos_x,pos_y)
                     smell_list.append(field[pos_key])
                 return smell_list
             
-        def position(i,ants,ant_value,direction):
-                pos_old=ant_value["pos"]
+        def position(i,ants,direct):
+                pos_old=ants[i]["pos"]
                 pos_x = int(pos_old[:3])
                 pos_y = int(pos_old[4:6])
-                pos_new = common.poskey(pos_x+direction[0],pos_y+direction[1])
-                ant_value.update({"pos":pos_new})
-                ants.update({i:ant_value})
+                pos_new = common.poskey(pos_x+direct[0],pos_y+direct[1])
+                ants[i].update({"pos":pos_new})
+                ants.update({i:ants[i]})
 
-        def pheromons(pos,field,mode,ant,start="001001"):
-                new_value=field[str(pos)][mode]+ant["pheromones"]
+        def pheromons(field,ants,i):
+                an = ants[i]
+                pos=an["pos"]
+                mode = common.switchstatus(an["status"])
+                new_value=field[str(pos)][mode]+an["pheromones"]
                 cell=field[pos]
                 cell.update({mode:new_value})
                 field.update({pos:cell})
-                if ant["pheromones"]>1:
-                        ant.update({"pheromones":ant["pheromones"]-1})
+                if an["pheromones"]>1:
+                        an.update({"pheromones":an["pheromones"]-1})
                 else:
-                        ant.update({"pos":start,
-                                    "status":"search",
-                                    "pheromones":200})
+                        ant.birth(ants,i)
                 return field
 
-        def modechange(pos,a,start,target):
-                stat = a["status"]
-                if pos == target:
+        def modechange(an):
+                stat = an["status"]
+                if an["pos"] == common.targetpoint:
                     stat = "return"
-                elif pos == start:
+                elif an["pos"] == common.startpoint:
                     stat = "search"
                 else:
                     pass
-                a.update({"status":stat})
-                return a
+                an.update({"status":stat})
+                return an
                 
         def printtext(roundnr,antnr,status, value_list,position):
                 text =str(roundnr)+"Ant"+str(antnr)+":"+str(status)+"-- search:"

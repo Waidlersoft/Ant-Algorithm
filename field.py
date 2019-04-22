@@ -1,16 +1,13 @@
 import matplotlib.pyplot as plt
 from common import common
 
-x_border = [0,10]
-y_border = [0,10]
-
 class field():
     def start():       
         field = {}
-        for x in range(x_border[0],x_border[1]+1):
-            for y in range(y_border[0],y_border[1]+1):
+        for x in range(common.x_border[0],common.x_border[1]+1):
+            for y in range(common.y_border[0],common.y_border[1]+1):
                 keystring = common.poskey(x,y)
-                if x in x_border or y in y_border:
+                if x in common.x_border or y in common.y_border:
                     n = 0
                 else:
                     n = 1
@@ -18,16 +15,16 @@ class field():
                                          "return":n}})
         return field
 
-    def prepare(start,target):
+    def prepare():
         ax = plt.axes()
-        plt.xlim(0,10) 
-        plt.ylim(0,10)
+        plt.xlim(common.x_border[0],common.x_border[1]) 
+        plt.ylim(common.y_border[0],common.y_border[1])
         POIx=[]
         POIy=[]
-        POIx.append(common.xy_pos(start)[0])
-        POIy.append(common.xy_pos(start)[1])
-        POIx.append(common.xy_pos(target[0])[0])
-        POIy.append(common.xy_pos(target[0])[1])
+        POIx.append(common.xy_pos(common.startpoint)[0])
+        POIy.append(common.xy_pos(common.startpoint)[1])
+        POIx.append(common.xy_pos(common.targetpoint)[0])
+        POIy.append(common.xy_pos(common.targetpoint)[1])
         ax.scatter([POIx], [POIy])
         return ax
    

@@ -4,29 +4,23 @@ from ant import ant
 from common import common
 from field import field
 
-direction = [[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1]]
-startpoint = "001001"
-target = ["009009"]
-n = 5 #number of ants
-
 def main():
-    ax = field.prepare(startpoint,target)
+    ax = field.prepare()
     playgr = field.start()
-    ants = ant.create(n,startpoint)
-    pos_list =[]
+    ants = ant.create()
     j=0
     while 1:
         j = j+1
         pltlistsearch=[]
         pltlistreturn=[]
-        for i in range(0,n):
+        for i in range(0,common.n):
             an = ants[i]
-            smell_list = ant.smell(an["pos"],playgr,direction)
-            direction_value = ant.move(smell_list,an["status"],direction)
-            ant.pheromons(an["pos"],playgr,common.switchstatus(ants[i]["status"]),an,startpoint)
-            antchange = ant.modechange(an["pos"],an,startpoint,target)
+            smell_list = ant.smell(an["pos"],playgr)
+            direction_value = ant.move(smell_list,an["status"])
+            ant.pheromons(playgr,ants,i)
+            antchange = ant.modechange(an)
             ants.update(antchange)
-            position = ant.position(i,ants,ants[i],direction_value)
+            position = ant.position(i,ants,direction_value)
             pos_new = an["pos"]
             if an["status"]=="search":
                 pltlistsearch.append(pos_new)

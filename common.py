@@ -1,4 +1,12 @@
 class common():
+    direction = [[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1]]
+    startpoint = "001001"
+    targetpoint = "009009"
+    n = 5 #number of ants
+    pos_list =[]
+    x_border = [0,10]
+    y_border = [0,10]
+
     def poskey(x,y):
         positionkey = (3-len(str(x)))*"0"+str(x*1000+y)
         return positionkey
