@@ -1,14 +1,18 @@
+from log import log
+
 class common():
     direction = [[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1]]
     startpoint = "001001"
     targetpoint = "009009"
-    n = 5 #number of ants
+    n = 50 #number of ants
     pos_list =[]
-    x_border = [0,10]
-    y_border = [0,10]
+    x_border = [0,11]
+    y_border = [0,11]
 
     def poskey(x,y):
-        positionkey = (3-len(str(x)))*"0"+str(x*1000+y)
+        posNr = str(x*1000+y)
+        positionkey = (6-len(posNr))*"0"+posNr
+        log.write("x:"+str(x)+"y:"+str(y)+"="+positionkey)
         return positionkey
 
     def xy_pos(pos):

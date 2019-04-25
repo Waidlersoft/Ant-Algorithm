@@ -1,18 +1,19 @@
 import datetime
 class log():
-    Level = ["Info","Log","Debug"]
-    Loglevel = "Log"
-    def create():
-        with ('log.txt','w') Open as f:
-           f.write('Ant-algorithm log')
+    level = ['fatal','error','warn','info','debug','trace']
+    loglevel = 'debug'
 
-    def write(f,text,status):
-        with ('log.txt','a') Open as f:
-         For i in Level:
-          If i == Status:
-            pot = datetime.datetime.now().isoformat()[:19]
-            output= pot+" "+status+":"+str(text)
-            print(output)
-            f.write(output)
-          If i==loglevel:
-               break
+    def create():
+        with open ('log.txt','w') as f:
+            f.write('Ant-algorithm log\n')
+
+    def write(text,status='trace'):
+        with open ('log.txt','a') as f:
+            for i in log.level:
+                if i == status:
+                    pot = datetime.datetime.now().isoformat()[:19]
+                    output= pot+" "+status+":"+str(text)+"\n"
+                    print(output)
+                    f.write(output)
+                if i==log.loglevel:
+                   break
