@@ -54,7 +54,6 @@ class field():
                 break
         log.write("Collection after:"+str(ax.collections))
         ax.plot()
-
                 
     def wind(field):
         for x in range(common.x_border[0],common.x_border[1]+1):

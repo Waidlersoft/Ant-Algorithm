@@ -8,6 +8,7 @@ class ant():
                                 "status":"search",
                                 "pheromones":200}})
                 return ants
+        
         def create(n=1):
                 ants = {}
                 for i in range(0,common.n):

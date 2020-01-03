@@ -1,4 +1,5 @@
 import datetime
+
 class log():
     level = ['fatal','error','warn','info','debug','trace']
     loglevel = 'debug'

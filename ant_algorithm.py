@@ -11,9 +11,7 @@ def main():
     playgr = field.start()
     ants = ant.create()
     log.write(ants,"trace")
-    j=0
-    while j<10000:
-        j = j+1
+    for j in range(1,10000):
         pltlistsearch=[]
         pltlistreturn=[]
         for i in range(0,common.n):
@@ -29,4 +27,5 @@ def main():
         field.wind(playgr)
         field.paint(pltlistsearch,pltlistreturn,plt,ax)
 
-main()
+if __name__ == "__main__":
+    main()
