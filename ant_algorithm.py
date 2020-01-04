@@ -5,16 +5,20 @@ from common import common
 from field import field
 from log import log
 
-def main():
+def preparation():
     log.create()
     ax = field.prepare()
     playgr = field.start()
     ants = ant.create()
     log.write(ants,"trace")
+    return (ax,playgr,ants)
+    
+def main():
+    ax,playgr,ants = preparation()
     for j in range(1,10000):
         pltlistsearch=[]
         pltlistreturn=[]
-        for i in range(0,common.n):
+        for i in range(0,common.max_ants):
             an = ants[i]
             ant.modechange(ants,i)
             ant.position(i,ants,playgr)
