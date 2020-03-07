@@ -23,6 +23,6 @@ class common():
 
     def switchstatus(status):
         if status == "search":
-            i = "return"
-        else: i = "return"
-        return i
+            return "return"
+        else:
+            return "search"
