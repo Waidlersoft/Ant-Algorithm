@@ -1,14 +1,15 @@
 from log import log
+import config
 
 class common():
-    direction = [[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1]]
-    startpoint = "001001"
-    targetpoint = "009009"
-    max_ants = 50
-    n = max_ants
-    pos_list =[]
-    x_border = [0,11]
-    y_border = [0,11]
+    direction = config.direction
+    startpoint = config.startpoint
+    targetpoint = config.targetpoint
+    max_ants = config.max_ants
+    n = config.max_ants
+    pos_list = config.pos_list
+    x_border = config.x_border
+    y_border = config.y_border
 
     def poskey(x,y):
         posNr = str(x*1000+y)
@@ -17,12 +18,14 @@ class common():
         return positionkey
 
     def xy_pos(pos):
-        pos_x = int(pos[:3])
-        pos_y = int(pos[4:6])
-        return [pos_x,pos_y]
+        if len(pos)==6:
+            pos_x = int(pos[:3])
+            pos_y = int(pos[4:6])
+            return [pos_x,pos_y]
+        else:
+            return False
 
     def switchstatus(status):
-        if status == "search":
-            return "return"
-        else:
-            return "search"
+        switch = {"search":"return",
+         "return":"search"}
+        return switch[status]

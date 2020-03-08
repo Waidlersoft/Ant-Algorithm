@@ -13,7 +13,7 @@ def preparation():
     log.write(ants,"trace")
     return (ax,playgr,ants)
     
-def main():
+def start():
     ax,playgr,ants = preparation()
     for j in range(1,10000):
         pltlistsearch=[]
@@ -32,4 +32,4 @@ def main():
         field.paint(pltlistsearch,pltlistreturn,plt,ax)
 
 if __name__ == "__main__":
-    main()
+    start()
