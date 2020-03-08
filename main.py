@@ -1,7 +1,7 @@
 import ant_algorithm as algo
 
 def main():
-    algo.main()
+    algo.start()
     
 if __name__ == "__main__":
     main()
