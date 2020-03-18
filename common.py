@@ -12,6 +12,10 @@ class common():
     y_border = config.y_border
 
     def poskey(x,y):
+        if not isinstance(y, int) or not isinstance(x, int):
+            return False
+        if (x>999) or (y>999):
+            return False
         posNr = str(x*1000+y)
         positionkey = (6-len(posNr))*"0"+posNr
         log.write("x:"+str(x)+"y:"+str(y)+"="+positionkey)

@@ -1,4 +1,3 @@
-import matplotlib
 import matplotlib.pyplot as plt
 from ant import ant
 from common import common
@@ -30,6 +29,7 @@ def start():
             log.write(ant.printtext(j,i,an["status"],pos_new))
         field.wind(playgr)
         field.paint(pltlistsearch,pltlistreturn,plt,ax)
+
 
 if __name__ == "__main__":
     start()
