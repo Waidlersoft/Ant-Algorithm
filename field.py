@@ -2,8 +2,11 @@ import matplotlib.pyplot as plt
 from common import common
 from log import log
 
+
 class field():
-    def start():       
+
+
+    def start():
         field = {}
         for x in range(common.x_border[0],common.x_border[1]+1):
             for y in range(common.y_border[0],common.y_border[1]+1):
