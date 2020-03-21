@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 from ant import ant
 from common import common
-from field import field
+from fieldpreparation import FieldPreparation
 from log import log
 
 def preparation():
     log.create()
-    ax = field.prepare()
-    playgr = field.start()
+    ax = FieldPreparation.prepare()
+    playgr = FieldPreparation.create_field()
     ants = ant.create()
     log.write(ants,"trace")
     return (ax,playgr,ants)
@@ -27,8 +27,8 @@ def start():
             else:
                 pltlistreturn.append(pos_new)
             log.write(ant.printtext(j,i,an["status"],pos_new))
-        field.wind(playgr)
-        field.paint(pltlistsearch,pltlistreturn,plt,ax)
+        FieldPreparation.wind(playgr)
+        FieldPreparation.paint(pltlistsearch, pltlistreturn, plt, ax)
 
 
 if __name__ == "__main__":
