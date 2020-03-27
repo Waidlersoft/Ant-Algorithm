@@ -1,4 +1,4 @@
-import ant_algorithm as algo
+import algorithm.ant_algorithm as algo
 
 def main():
     algo.start()
