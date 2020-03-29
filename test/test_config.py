@@ -49,3 +49,6 @@ def test_y_border():
     assert len(config.y_border) == 2
     assert config.y_border[0] == 0
     assert config.y_border[1] > 0
+
+def test_loglevel():
+    assert config.log_level in config.level

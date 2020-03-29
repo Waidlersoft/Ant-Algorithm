@@ -7,4 +7,4 @@ pos_list = []
 x_border = [0, 5]
 y_border = [0, 5]
 level = ['fatal', 'error', 'warn', 'info', 'debug', 'trace']
-log_level = 'trace'
+log_level = 'warn'
