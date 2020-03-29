@@ -8,3 +8,4 @@ x_border = [0, 5]
 y_border = [0, 5]
 level = ['fatal', 'error', 'warn', 'info', 'debug', 'trace']
 log_level = 'warn'
+logfile_name = 'log.txt'
