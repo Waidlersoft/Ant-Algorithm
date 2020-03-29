@@ -1,5 +1,6 @@
-import algorithm.ant_algorithm, algorithm.config
-
+import syspath
+import algorithm.ant_algorithm as ant_algorithm
+import algorithm.config as config
 
 def test_preparation():
     x_border = config.x_border

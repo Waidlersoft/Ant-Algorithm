@@ -1,4 +1,5 @@
-import algorithm.config, re
+import syspath, re
+import algorithm.config as config
 from algorithm.common import common
 
 def test_direction():

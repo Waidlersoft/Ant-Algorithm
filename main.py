@@ -1,7 +1,7 @@
 import algorithm.ant_algorithm as algo
 
-def main()
+def main():
     algo.start()
     
-if __name__ == __main__
+if __name__ == '__main__':
     main()

@@ -1,1 +1,1 @@
-from ..algorithm.main import *
+import syspath, main

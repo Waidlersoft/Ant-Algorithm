@@ -5,3 +5,4 @@ algorithm/__pychache__/
 htmlcov/
 .idea/
 .coverage
+log.txt

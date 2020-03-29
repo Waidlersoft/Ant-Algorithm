@@ -1,3 +1,4 @@
+import syspath
 from algorithm.common import common
 
 def test_birth():

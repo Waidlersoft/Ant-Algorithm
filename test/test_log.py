@@ -1,1 +1,2 @@
-from .algorithm import log
+import syspath
+from algorithm import log
