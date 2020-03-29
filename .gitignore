@@ -1,4 +1,5 @@
 __pychache__/
+test/__pychache__/
 .pytest_cache/
 htmlcov/
 .idea/
