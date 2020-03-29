@@ -1,1 +1,1 @@
-import log
+from .algorithm import log

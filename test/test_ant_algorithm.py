@@ -1,4 +1,4 @@
-import ant_algorithm, config
+import algorithm.ant_algorithm, algorithm.config
 
 
 def test_preparation():

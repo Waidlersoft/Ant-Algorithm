@@ -1,4 +1,4 @@
-from common import common
+from algorithm.common import common
 
 def test_birth():
     assert common.switchstatus("search") == "return"

@@ -1,5 +1,5 @@
-from fieldpreparation import FieldPreparation
-import config
+from .algorithm.fieldpreparation import FieldPreparation
+import .algorithm.config as config
 
 def test_start():
     playingField = FieldPreparation.create_field()

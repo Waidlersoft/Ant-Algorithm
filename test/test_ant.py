@@ -1,5 +1,5 @@
-from ant import ant
-from common import common
+from algorithm.ant import ant
+from algorithm.common import common
 
 def test_birth():
     assert ant.birth({},2) == {2: {"pos": common.startpoint,

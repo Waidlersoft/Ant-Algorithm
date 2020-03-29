@@ -1,5 +1,5 @@
-import config, re
-from common import common
+import algorithm.config, re
+from algorithm.common import common
 
 def test_direction():
     assert isinstance(config.direction, list) is True
