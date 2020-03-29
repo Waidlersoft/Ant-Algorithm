@@ -36,6 +36,7 @@ def start():
         pltlistsearch, pltlistreturn = ants_changing(j, ants, playground)
         FieldPreparation.wind(playground)
         FieldPreparation.paint(pltlistsearch, pltlistreturn, plt, ax)
+    return True
 
 
 if __name__ == "__main__":

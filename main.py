@@ -1,7 +1,9 @@
 import algorithm.ant_algorithm as algo
 
 def main():
-    algo.start()
+    return algo.start()
     
 if __name__ == '__main__':
     main()
+else:
+    pass
